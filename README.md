@@ -14,16 +14,16 @@ Over 80% of U.S. consumers read reviews before buying online, and fake reviews h
 
 Two signals, combined:
 
-1. **A classifier trained from scratch** (TF-IDF with 1–2 grams + Logistic Regression, scikit-learn) on the **Fake Reviews Dataset** (Salminen et al., 2021) — 40,432 real, hand-labeled Amazon reviews, half genuine and half computer-generated. Evaluated against a coin-flip baseline and tested on held-out data it never saw during training.
+1. **A classifier trained from scratch** (TF-IDF with 1–2 grams over a 20,000-term vocabulary + Logistic Regression, scikit-learn) on the **Fake Reviews Dataset** (Salminen et al., 2021) — 40,432 real, hand-labeled Amazon reviews, half genuine and half computer-generated. Evaluated against a coin-flip baseline and tested on held-out data it never saw during training.
 2. **A generic-language detector** we wrote ourselves, flagging the hollow, detail-free praise phrases fake reviews lean on ("exceeded my expectations", "will definitely buy again," excess exclamation points).
 
 ## Results (held-out test set, 8,087 reviews never seen in training)
 
 | Metric | Baseline (coin flip) | Our trained model |
 |---|---|---|
-| Accuracy | 50.0% | **88.9%** |
-| Recall on fake | 0.0% | **88.1%** |
-| Precision on fake | n/a | **89.5%** |
+| Accuracy | 50.0% | **89.3%** |
+| Recall on fake | 0.0% | **88.4%** |
+| Precision on fake | n/a | **90.1%** |
 
 We also stress-tested the model on 5 reviews we wrote ourselves in a more modern, fluent "fake review" voice (the training data's fake reviews are GPT-2-generated, from 2021) — the trained model alone caught only 2 of 5. The generic-language rule engine catches exactly that gap, flagging all 3 reviews the model missed. This generalization test and its result are discussed in the notebook and write-up.
 
@@ -40,7 +40,7 @@ Open the **[live demo](https://claude.ai/artifact/4DVx67qgpe9M1sBiBWT3Y8)** — 
 ## Credits
 
 - Dataset: Fake Reviews Dataset (Salminen, Kandpal, Kamel, Jung & Jansen, 2021, *Journal of Retailing and Consumer Services*)
-- Model: TF-IDF (1–2 grams) + Logistic Regression, trained from scratch with scikit-learn
+- Model: TF-IDF (1–2 grams, 20,000-term vocabulary) + Logistic Regression, trained from scratch with scikit-learn
 - Generic-language rule engine: written by our team
 - AI coding assistance: Claude (Anthropic) helped write, debug, and structure this notebook, the evaluation pipeline, and the demo
 
