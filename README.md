@@ -2,7 +2,7 @@
 
 **Finance Track — Veritas AI International High School Hackathon**
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/rb1-com/reviewseal/blob/main/ReviewSeal.ipynb)
+**[Try the live demo →](https://claude.ai/artifact/4DVx67qgpe9M1sBiBWT3Y8)** · [Open the notebook in Colab](https://colab.research.google.com/github/rb1-com/reviewseal/blob/main/ReviewSeal.ipynb)
 
 Paste in a product review. ReviewSeal returns a verdict — **Likely genuine**, **Mixed signals**, or **Likely fake** — styled as a verification stamp, along with the specific signals that drove the call.
 
@@ -29,20 +29,20 @@ We also stress-tested the model on 5 reviews we wrote ourselves in a more modern
 
 ## Run it
 
-Click the **Open in Colab** badge above, then Runtime → Run all, and try the built-in examples in the demo at the bottom.
+Open the **[live demo](https://claude.ai/artifact/4DVx67qgpe9M1sBiBWT3Y8)** — it runs entirely in your browser (the trained model was ported to plain JavaScript, verified to match the Python model to 6 decimal places), so there's nothing to install. To see the training, evaluation, and the notebook version of the demo, open `ReviewSeal.ipynb` in Colab and Runtime → Run all.
 
 ## Tech stack
 
-- Python, pandas, scikit-learn (TF-IDF + Logistic Regression)
-- Gradio (demo UI)
+- Python, pandas, scikit-learn (TF-IDF + Logistic Regression) — training and evaluation
+- Plain HTML/CSS/JavaScript — the live demo, running the same model client-side
+- Gradio — an in-notebook version of the demo, for anyone running the notebook directly
 
 ## Credits
 
 - Dataset: Fake Reviews Dataset (Salminen, Kandpal, Kamel, Jung & Jansen, 2021, *Journal of Retailing and Consumer Services*)
 - Model: TF-IDF (1–2 grams) + Logistic Regression, trained from scratch with scikit-learn
-- Demo UI: [Gradio](https://www.gradio.app/)
 - Generic-language rule engine: written by our team
-- AI coding assistance: Claude (Anthropic) helped write, debug, and structure this notebook and the evaluation pipeline
+- AI coding assistance: Claude (Anthropic) helped write, debug, and structure this notebook, the evaluation pipeline, and the demo
 
 This project is a prototype and is not financial advice.
 
