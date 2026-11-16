@@ -6,9 +6,13 @@
 
 Paste in a product review. Verity returns a verdict — **Likely genuine**, **Mixed signals**, or **Likely fake** — printed as a diagnostic console readout, with a fake-likelihood meter and a log of the specific signals that drove the call.
 
+## Why Finance
+
+Fake reviews are a financial-fraud problem, not just a trust-and-safety one: they're a form of market manipulation that directly costs consumers money by inflating demand for products through fabricated social proof, the same way manipulated signals distort any market. Shoppers act on reviews as financial information when deciding where to spend, and a fake review corrupts that information the same way a fraudulent rating or a manipulated stock tip would.
+
 ## Why it matters
 
-Over 80% of U.S. consumers read reviews before buying online, and fake reviews have become widespread enough that major platforms have pulled down tens of millions of them in recent enforcement actions. A fake 5-star review doesn't just mislead one shopper — it distorts which products rise to the top of search results for everyone.
+Over 80% of U.S. consumers read reviews before buying online, and fake reviews have become widespread enough that major platforms have pulled down tens of millions of them in recent enforcement actions. A fake 5-star review doesn't just mislead one shopper — it distorts which products rise to the top of search results for everyone, and the financial cost is real: consumers overpay for products that don't deliver, while better products lose sales to review-farmed competitors.
 
 ## How it works
 
