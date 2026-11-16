@@ -10,20 +10,24 @@
 :root {
   --ink: #16242A;
   --ink-soft: #4B5B60;
-  --paper: #EDF0EF;
+  --ink-faint: #8A9496;
+  --paper: #EBEEEA;
   --paper-line: #C9D0CD;
-  --paper-white: #FBFBFA;
-  --genuine: #4F6F3F;
-  --mixed: #7A6A2E;
-  --fake: #8B3A2B;
+  --paper-white: #FAFAF8;
+  --genuine: #3F5F37;
+  --mixed: #6E5A1F;
+  --fake: #7A2E22;
 }
 
 * { box-sizing: border-box; }
 
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
 html, body {
   margin: 0;
   padding: 0;
-  background: var(--paper);
   color: var(--ink);
   font-family: "IBM Plex Sans", system-ui, sans-serif;
 }
@@ -33,11 +37,30 @@ body {
   display: flex;
   justify-content: center;
   padding: 56px 20px 80px;
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(circle at 18% 28%, rgba(22,36,42,0.025) 0, transparent 38%),
+    radial-gradient(circle at 82% 68%, rgba(22,36,42,0.03) 0, transparent 42%),
+    repeating-linear-gradient(0deg, rgba(22,36,42,0.012) 0px, rgba(22,36,42,0.012) 1px, transparent 1px, transparent 3px);
+  background-attachment: fixed;
 }
 
 .sheet {
   width: 100%;
   max-width: 640px;
+  background: var(--paper-white);
+  box-shadow: 0 1px 0 rgba(22,36,42,0.05), 0 18px 48px -24px rgba(22,36,42,0.22);
+  padding: 44px 44px 36px;
+  position: relative;
+}
+
+.sheet::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--ink) 0%, var(--ink) 60%, transparent 60%);
+  opacity: 0.85;
 }
 
 .letterhead {
@@ -47,6 +70,7 @@ body {
   border-bottom: 1px solid var(--ink);
   padding-bottom: 14px;
   margin-bottom: 6px;
+  gap: 16px;
 }
 
 .wordmark {
@@ -56,26 +80,29 @@ body {
   letter-spacing: 0.2px;
   color: var(--ink);
   margin: 0;
+  white-space: nowrap;
 }
 
 .file-no {
   font-family: "IBM Plex Mono", monospace;
-  font-size: 11px;
+  font-size: 10.5px;
   color: var(--ink-soft);
   letter-spacing: 0.5px;
+  text-align: right;
+  line-height: 1.5;
 }
 
 .tagline {
   font-size: 14px;
   color: var(--ink-soft);
-  margin: 0 0 36px;
-  max-width: 440px;
-  line-height: 1.5;
+  margin: 18px 0 32px;
+  max-width: 460px;
+  line-height: 1.55;
 }
 
 label.field-label {
   display: block;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 500;
   color: var(--ink);
   margin-bottom: 8px;
@@ -83,7 +110,7 @@ label.field-label {
 
 textarea {
   width: 100%;
-  min-height: 130px;
+  min-height: 128px;
   resize: vertical;
   border: 1px dashed var(--paper-line);
   border-radius: 0;
@@ -91,16 +118,14 @@ textarea {
   color: var(--ink);
   font-family: "IBM Plex Sans", system-ui, sans-serif;
   font-size: 14.5px;
-  line-height: 1.5;
+  line-height: 1.55;
   padding: 14px 16px;
   outline: none;
   transition: border-color 0.15s ease;
 }
 
-textarea:focus {
-  border-color: var(--ink);
-  border-style: solid;
-}
+textarea:focus { border-color: var(--ink); border-style: solid; }
+textarea:focus-visible { outline: 2px dashed var(--ink); outline-offset: 3px; }
 
 .row {
   display: flex;
@@ -113,41 +138,32 @@ textarea:focus {
 .char-count {
   font-family: "IBM Plex Mono", monospace;
   font-size: 11px;
-  color: var(--ink-soft);
+  color: var(--ink-faint);
 }
 
 button#checkBtn {
   border: none;
   border-radius: 0;
   background: var(--ink);
-  color: var(--paper);
+  color: var(--paper-white);
   font-family: "IBM Plex Sans", system-ui, sans-serif;
   font-size: 14px;
   font-weight: 500;
   padding: 11px 26px;
   cursor: pointer;
-  transition: background 0.15s ease;
+  transition: background 0.15s ease, transform 0.1s ease;
 }
-
 button#checkBtn:hover { background: var(--ink-soft); }
-button#checkBtn:disabled { background: var(--paper-line); color: var(--ink-soft); cursor: default; }
+button#checkBtn:active { transform: translateY(1px); }
+button#checkBtn:focus-visible { outline: 2px dashed var(--ink); outline-offset: 3px; }
 
-.examples {
-  margin-top: 22px;
-  padding-top: 18px;
-  border-top: 1px solid var(--paper-line);
-}
-
-.examples-label {
-  font-size: 12px;
-  color: var(--ink-soft);
-  margin-bottom: 10px;
-}
+.examples { margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--paper-line); }
+.examples-label { font-size: 11.5px; color: var(--ink-faint); margin-bottom: 10px; letter-spacing: 0.2px; }
 
 .example-chip {
   display: inline-block;
   font-size: 12.5px;
-  color: var(--ink);
+  color: var(--ink-soft);
   background: transparent;
   border: 1px solid var(--paper-line);
   padding: 6px 12px;
@@ -156,114 +172,166 @@ button#checkBtn:disabled { background: var(--paper-line); color: var(--ink-soft)
   max-width: 100%;
   text-align: left;
   font-family: "IBM Plex Sans", system-ui, sans-serif;
+  transition: border-color 0.12s ease, color 0.12s ease, background 0.12s ease;
 }
-.example-chip:hover { border-color: var(--ink); background: var(--paper-white); }
+.example-chip:hover { border-color: var(--ink); color: var(--ink); background: var(--paper); }
+.example-chip:focus-visible { outline: 2px dashed var(--ink); outline-offset: 2px; }
 
-#resultArea {
-  margin-top: 40px;
-  min-height: 1px;
+#resultArea { margin-top: 8px; min-height: 1px; }
+
+.perforation {
+  margin-top: 38px;
+  height: 1px;
+  background-image: linear-gradient(90deg, var(--paper-line) 60%, transparent 40%);
+  background-size: 10px 1px;
+  position: relative;
 }
+.perforation::before, .perforation::after {
+  content: "";
+  position: absolute;
+  top: -7px;
+  width: 14px; height: 14px;
+  background: var(--paper);
+  border-radius: 50%;
+}
+.perforation::before { left: -51px; }
+.perforation::after { right: -51px; }
 
 .placeholder-note {
   border: 1px dashed var(--paper-line);
-  padding: 26px 22px;
-  color: var(--ink-soft);
+  padding: 30px 22px;
+  color: var(--ink-faint);
   font-size: 13.5px;
   text-align: center;
+  margin-top: 30px;
 }
 
 .stamp-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px 0 26px;
-  animation: fadeStamp 0.35s ease;
+  padding: 36px 0 28px;
 }
 
-@keyframes fadeStamp {
-  from { opacity: 0; transform: scale(0.94); }
-  to { opacity: 1; transform: scale(1); }
+.stamp-svg-holder {
+  position: relative;
+  width: 168px;
+  height: 168px;
 }
 
-.stamp {
-  border: 3px double var(--stamp-color);
-  color: var(--stamp-color);
-  padding: 16px 30px;
-  text-align: center;
-  background: transparent;
+.stamp-thud {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 230px; height: 230px;
+  margin-left: -115px; margin-top: -115px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--stamp-color) 0%, transparent 72%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.stamp-svg {
+  position: relative;
   transform: rotate(var(--stamp-rot));
 }
 
-.stamp .verdict-word {
+@keyframes stampDown {
+  0%   { opacity: 0; transform: rotate(var(--stamp-rot)) scale(2.1); }
+  55%  { opacity: 1; transform: rotate(var(--stamp-rot)) scale(0.94); }
+  75%  { transform: rotate(var(--stamp-rot)) scale(1.04); }
+  100% { opacity: 1; transform: rotate(var(--stamp-rot)) scale(1); }
+}
+@keyframes thudFlash {
+  0% { opacity: 0; }
+  50% { opacity: 1; transform: scale(0.7); }
+  100% { opacity: 0; transform: scale(1.3); }
+}
+.stamp-svg.animate { animation: stampDown 0.46s cubic-bezier(.2,.8,.3,1.1) both; }
+.stamp-thud.animate { animation: thudFlash 0.4s ease-out both; }
+
+.stamp-verdict-word {
   font-family: "Source Serif 4", Georgia, serif;
   font-weight: 700;
-  font-size: 23px;
-  letter-spacing: 1px;
+  font-size: 17px;
+  letter-spacing: 0.5px;
 }
-
-.stamp .verdict-score {
+.stamp-verdict-score {
   font-family: "IBM Plex Mono", monospace;
-  font-size: 11.5px;
-  margin-top: 5px;
+  font-size: 10.5px;
 }
 
 .stamp-note {
   font-size: 13.5px;
   line-height: 1.6;
   color: var(--ink);
-  margin-top: 22px;
-  max-width: 460px;
+  margin-top: 20px;
+  max-width: 440px;
   text-align: center;
 }
 
 .model-read {
   font-family: "IBM Plex Mono", monospace;
-  font-size: 11px;
-  color: var(--ink-soft);
+  font-size: 10.5px;
+  color: var(--ink-faint);
   margin-top: 10px;
   text-align: center;
 }
 
-.signals-box {
+.receipt {
   border: 1px solid var(--paper-line);
-  padding: 18px 20px;
-  margin-top: 6px;
+  padding: 20px 22px 8px;
+  margin-top: 4px;
+  background:
+    linear-gradient(var(--paper-line) 0 0) 0 0/1px 100% no-repeat,
+    linear-gradient(var(--paper-line) 0 0) 100% 0/1px 100% no-repeat;
+  background-color: var(--paper-white);
 }
 
-.signals-title {
-  font-size: 13px;
+.receipt-title {
+  font-size: 12.5px;
   font-weight: 600;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
+  display: flex;
+  justify-content: space-between;
+  color: var(--ink);
 }
+.receipt-title .count { color: var(--ink-faint); font-family: "IBM Plex Mono", monospace; font-weight: 400; font-size: 11px; }
 
 .signal-row {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
   gap: 16px;
-  padding: 8px 0;
-  border-bottom: 1px solid var(--paper-line);
+  padding: 10px 0;
+  border-bottom: 1px dotted var(--paper-line);
   font-size: 13px;
 }
 .signal-row:last-child { border-bottom: none; }
-
-.signal-none {
-  padding: 8px 0;
-  font-size: 13px;
+.signal-row .pts {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12px;
   color: var(--ink-soft);
+  white-space: nowrap;
 }
 
+.signal-none { padding: 10px 0; font-size: 13px; color: var(--ink-faint); }
+
 footer.foot-note {
-  margin-top: 46px;
+  margin-top: 40px;
   padding-top: 16px;
   border-top: 1px solid var(--paper-line);
   font-size: 11.5px;
-  color: var(--ink-soft);
+  color: var(--ink-faint);
   line-height: 1.6;
 }
 
-@media (max-width: 480px) {
-  .wordmark { font-size: 25px; }
-  body { padding: 36px 16px 60px; }
+@media (max-width: 540px) {
+  .sheet { padding: 30px 22px 28px; }
+  .wordmark { font-size: 24px; }
+  .file-no { font-size: 9.5px; }
+  body { padding: 28px 12px 50px; }
+  .perforation::before { left: -29px; }
+  .perforation::after { right: -29px; }
 }
 </style>
 </head>
@@ -271,7 +339,7 @@ footer.foot-note {
 <div class="sheet">
   <div class="letterhead">
     <h1 class="wordmark">ReviewSeal</h1>
-    <div class="file-no">FINANCE TRACK · VERITAS AI HACKATHON</div>
+    <div class="file-no">FINANCE TRACK<br>VERITAS AI HACKATHON</div>
   </div>
   <p class="tagline">Paste a product review below. Each one is checked against a classifier trained on 40,000+ labeled reviews and a bank of known fake-review phrasing, then stamped with a verdict.</p>
 
@@ -283,9 +351,11 @@ footer.foot-note {
   </div>
 
   <div class="examples">
-    <div class="examples-label">Try an example</div>
+    <div class="examples-label">TRY AN EXAMPLE</div>
     <div id="exampleList"></div>
   </div>
+
+  <div class="perforation"></div>
 
   <div id="resultArea">
     <div class="placeholder-note">Paste a review above, or choose an example, to see a verdict here.</div>
@@ -307,28 +377,19 @@ const INTERCEPT = MODEL.intercept;
 
 function tokenize(text) {
   const lower = text.toLowerCase();
-  const matches = lower.match(/\b\w\w+\b/g) || [];
-  return matches;
+  return lower.match(/\b\w\w+\b/g) || [];
 }
-
-function filteredTokens(text) {
-  return tokenize(text).filter(t => !STOP.has(t));
-}
-
+function filteredTokens(text) { return tokenize(text).filter(t => !STOP.has(t)); }
 function ngrams(tokens) {
-  const grams = [];
-  for (const t of tokens) grams.push(t);
+  const grams = [...tokens];
   for (let i = 0; i < tokens.length - 1; i++) grams.push(tokens[i] + " " + tokens[i + 1]);
   return grams;
 }
-
 function tfidfVector(text) {
   const toks = filteredTokens(text);
   const grams = ngrams(toks);
   const counts = {};
-  for (const g of grams) {
-    if (VOCAB.hasOwnProperty(g)) counts[g] = (counts[g] || 0) + 1;
-  }
+  for (const g of grams) if (VOCAB.hasOwnProperty(g)) counts[g] = (counts[g] || 0) + 1;
   const entries = [];
   let sumSq = 0;
   for (const term in counts) {
@@ -340,7 +401,6 @@ function tfidfVector(text) {
   const norm = Math.sqrt(sumSq) || 1;
   return entries.map(([idx, val]) => [idx, val / norm]);
 }
-
 function modelProbFake(text) {
   const vec = tfidfVector(text);
   let logit = INTERCEPT;
@@ -366,12 +426,12 @@ function runRuleEngine(text) {
   let hits = [];
   let pts = 0;
   for (const [name, pattern, weight] of GENERIC_PHRASES) {
-    if (pattern.test(lower)) { hits.push(name); pts += weight; }
+    if (pattern.test(lower)) { hits.push([name, weight]); pts += weight; }
   }
   const excl = (text.match(/!/g) || []).length;
-  if (excl >= 2) { hits.push(`Over-enthusiastic punctuation (${excl} exclamation marks)`); pts += Math.min(excl * 5, 20); }
+  if (excl >= 2) { const w = Math.min(excl * 5, 20); hits.push([`Over-enthusiastic punctuation (${excl} exclamation marks)`, w]); pts += w; }
   const allcaps = text.split(/\s+/).filter(w => w.length > 2 && w === w.toUpperCase() && /[A-Z]/.test(w));
-  if (allcaps.length) { hits.push(`${allcaps.length} ALL-CAPS word(s)`); pts += 10; }
+  if (allcaps.length) { hits.push([`${allcaps.length} ALL-CAPS word(s)`, 10]); pts += 10; }
   return [hits, Math.min(pts, 70)];
 }
 
@@ -390,9 +450,9 @@ function scoreReview(text) {
 }
 
 const STYLE = {
-  "Likely genuine": { color: "#4F6F3F", note: "Genuine-sounding. No strong signs of being written by a bot or a review farm — but no verdict here is a guarantee, so use your own judgment too." },
-  "Mixed signals": { color: "#7A6A2E", note: "Some signals point toward generic or formulaic writing. Weigh this review alongside others rather than on its own." },
-  "Likely fake": { color: "#8B3A2B", note: "Leans heavily toward the patterns seen in computer-generated and review-farm text. Don't let this review alone drive a purchase decision." },
+  "Likely genuine": { color: "#3F5F37", note: "Genuine-sounding. No strong signs of being written by a bot or a review farm — but no verdict here is a guarantee, so use your own judgment too." },
+  "Mixed signals": { color: "#6E5A1F", note: "Some signals point toward generic or formulaic writing. Weigh this review alongside others rather than on its own." },
+  "Likely fake": { color: "#7A2E22", note: "Leans heavily toward the patterns seen in computer-generated and review-farm text. Don't let this review alone drive a purchase decision." },
 };
 
 const EXAMPLES = [
@@ -409,6 +469,54 @@ const checkBtn = document.getElementById("checkBtn");
 const resultArea = document.getElementById("resultArea");
 const exampleList = document.getElementById("exampleList");
 
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+let fileCounter = Math.floor(Math.random() * 400) + 100;
+
+function roughCircle(cx, cy, r, seed) {
+  const pts = [];
+  const n = 48;
+  for (let i = 0; i <= n; i++) {
+    const a = (i / n) * Math.PI * 2;
+    const wobble = 1 + Math.sin(a * 7 + seed) * 0.012 + Math.sin(a * 13 + seed * 2) * 0.008;
+    pts.push([cx + Math.cos(a) * r * wobble, cy + Math.sin(a) * r * wobble]);
+  }
+  return "M" + pts.map(p => p[0].toFixed(2) + "," + p[1].toFixed(2)).join(" L") + " Z";
+}
+
+function buildStampSvg(verdict, score, color) {
+  const cx = 84, cy = 84;
+  const outerPath = roughCircle(cx, cy, 78, 1.3);
+  const innerPath = roughCircle(cx, cy, 64, 4.1);
+  const words = verdict.toUpperCase().split(" ");
+  const lineY = words.length > 1 ? [cy - 7, cy + 11] : [cy + 4];
+  const textLines = words.length > 1
+    ? `<text x="${cx}" y="${lineY[0]}" class="stamp-verdict-word" text-anchor="middle">${words[0]}</text>
+       <text x="${cx}" y="${lineY[1]}" class="stamp-verdict-word" text-anchor="middle">${words.slice(1).join(" ")}</text>`
+    : `<text x="${cx}" y="${lineY[0]}" class="stamp-verdict-word" text-anchor="middle">${words[0]}</text>`;
+  return `
+  <svg class="stamp-svg" viewBox="0 0 168 168" width="168" height="168" style="--stamp-color:${color};" fill="none" stroke="${color}">
+    <path d="${outerPath}" stroke-width="2.5" />
+    <path d="${innerPath}" stroke-width="1.1" />
+    <g fill="${color}" stroke="none">
+      ${textLines}
+      <text x="${cx}" y="${cy + 30}" text-anchor="middle" class="stamp-verdict-score">${score}/100</text>
+    </g>
+  </svg>`;
+}
+
+function animateCount(el, target, duration) {
+  if (reduceMotion) { el.textContent = target + "/100"; return; }
+  const start = performance.now();
+  function frame(now) {
+    const t = Math.min(1, (now - start) / duration);
+    const eased = 1 - Math.pow(1 - t, 3);
+    const val = Math.round(eased * target);
+    el.textContent = val + "/100";
+    if (t < 1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
 function render() {
   const text = input.value;
   charCount.textContent = `${text.length} character${text.length === 1 ? "" : "s"}`;
@@ -418,29 +526,34 @@ function render() {
   }
   const { score, verdict, modelProb, hits } = scoreReview(text);
   const style = STYLE[verdict];
-  const rotation = verdict !== "Mixed signals" ? -4 : -2;
+  const rotation = verdict !== "Mixed signals" ? -5 : -2;
+  fileCounter += 1;
 
   let signalsHtml;
   if (hits.length) {
-    signalsHtml = hits.map(h => `<div class="signal-row"><span>${h}</span></div>`).join("");
+    signalsHtml = hits.map(([h, w]) => `<div class="signal-row"><span>${h}</span><span class="pts">+${w}</span></div>`).join("");
   } else {
     signalsHtml = '<div class="signal-none">No generic-language signals matched.</div>';
   }
 
   resultArea.innerHTML = `
     <div class="stamp-wrap">
-      <div class="stamp" style="--stamp-color:${style.color}; --stamp-rot:${rotation}deg;">
-        <div class="verdict-word">${verdict.toUpperCase()}</div>
-        <div class="verdict-score">${score}/100 confidence of being fake</div>
+      <div class="stamp-svg-holder">
+        <div class="stamp-thud ${reduceMotion ? "" : "animate"}" style="--stamp-color:${style.color};"></div>
+        <div class="stamp-svg ${reduceMotion ? "" : "animate"}" style="--stamp-rot:${rotation}deg;">
+          ${buildStampSvg(verdict, 0, style.color)}
+        </div>
       </div>
       <div class="stamp-note">${style.note}</div>
-      <div class="model-read">Trained classifier's own read: ${Math.round(modelProb * 100)}% fake-like, from the writing alone.</div>
+      <div class="model-read">Trained classifier's own read: ${Math.round(modelProb * 100)}% fake-like, from the writing alone — file no. ${fileCounter}</div>
     </div>
-    <div class="signals-box">
-      <div class="signals-title">Signals found</div>
+    <div class="receipt">
+      <div class="receipt-title"><span>Signals found</span><span class="count">${hits.length} flagged</span></div>
       ${signalsHtml}
     </div>
   `;
+  const scoreEl = resultArea.querySelector(".stamp-verdict-score");
+  if (scoreEl) animateCount(scoreEl, score, 420);
 }
 
 checkBtn.addEventListener("click", render);
