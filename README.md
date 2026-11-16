@@ -2,9 +2,9 @@
 
 **Finance Track — Veritas AI International High School Hackathon**
 
-**[Try the live demo →](https://claude.ai/artifact/4DVx67qgpe9M1sBiBWT3Y8)** · [Open the notebook in Colab](https://colab.research.google.com/github/rb1-com/reviewseal/blob/main/Verity.ipynb)
+**[Try the live demo →](https://claude.ai/artifact/4DVx67qgpe9M1sBiBWT3Y8)** · [Open the notebook in Colab](https://colab.research.google.com/github/rb1-com/verity/blob/main/Verity.ipynb)
 
-Paste in a product review. Verity returns a verdict — **Likely genuine**, **Mixed signals**, or **Likely fake** — styled as a verification stamp, along with the specific signals that drove the call.
+Paste in a product review. Verity returns a verdict — **Likely genuine**, **Mixed signals**, or **Likely fake** — printed as a diagnostic console readout, with a fake-likelihood meter and a log of the specific signals that drove the call.
 
 ## Why it matters
 
