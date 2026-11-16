@@ -2,7 +2,7 @@
 
 **Finance Track — Veritas AI International High School Hackathon**
 
-[Try the live demo](https://claude.ai/artifact/4DVx67qgpe9M1sBiBWT3Y8) · [Open the notebook in Colab](https://colab.research.google.com/github/rb1-com/verity/blob/main/Verity.ipynb)
+[Open the notebook in Colab](https://colab.research.google.com/github/rb1-com/verity/blob/main/Verity.ipynb)
 
 Paste in a product review. Verity returns a verdict — **Likely genuine**, **Mixed signals**, or **Likely fake** — printed as a diagnostic console readout, with a fake-likelihood meter and a log of the specific signals that drove the call.
 
@@ -29,7 +29,7 @@ We also stress-tested the model on 5 reviews we wrote ourselves in a more modern
 
 ## Run it
 
-Open the **[live demo](https://claude.ai/artifact/4DVx67qgpe9M1sBiBWT3Y8)** — it runs entirely in your browser (the trained model was ported to plain JavaScript, verified to match the Python model to 6 decimal places), so there's nothing to install. To see the training, evaluation, and the notebook version of the demo, open `Verity.ipynb` in Colab and Runtime → Run all.
+Open `index.html` in a browser — it runs entirely client-side (the trained model was ported to plain JavaScript, verified to match the Python model to 6 decimal places), so there's nothing to install. To see the training, evaluation, and the notebook version of the demo, open `Verity.ipynb` in Colab and Runtime → Run all.
 
 ## Tech stack
 
